@@ -1,0 +1,108 @@
+{
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$"
+        },
+        "schema_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "deployment_stage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "triggered_at": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "trigger_origin": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "trigger_location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "token_claims": {
+          "oneOf": [{ "type": "object" }, { "type": "null" }]
+        },
+        "user_agent": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        }
+      },
+      "required": [
+        "schema_name",
+        "deployment_stage",
+        "triggered_at",
+        "trigger_origin",
+        "trigger_location"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "ip_address": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "cookie_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "account_id": {
+          "oneOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }]
+        },
+        "user_id": {
+          "oneOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }]
+        },
+        "impersonator_id": {
+          "oneOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }]
+        },
+        "other_ids": {
+          "oneOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }]
+        }
+      },
+      "required": ["ip_address", "cookie_id"]
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "hash_path": {
+          "oneOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }]
+        },
+        "search": {
+          "oneOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }]
+        },
+        "referrer": {
+          "oneOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }]
+        }
+      },
+      "required": ["host", "path"]
+    }
+  },
+  "required": ["metadata", "identity", "attributes"]
+}

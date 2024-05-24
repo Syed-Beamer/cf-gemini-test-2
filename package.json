@@ -1,0 +1,15 @@
+{
+  "name": "gemini",
+  "version": "1.0.1",
+  "description": "Geminijs",
+  "main": "gemini.js",
+  "scripts": {
+    "compile": "ajv compile -s 'functions/*_schema.json' -o 'functions/validator.js'",
+    "build": "npm i && npm run compile"
+  },
+  "author": "Syed Ahamed",
+  "license": "ISC",
+  "devDependencies": {
+    "ajv-cli": "^5.0.0"
+  }
+}
